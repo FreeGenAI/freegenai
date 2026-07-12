@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - FreeGenAI</title>
+<meta name="description" content="Privacy Policy for FreeGenAI - Free AI Image Generator. Learn how we handle your data.">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .legal-content{max-width:800px;margin:0 auto;padding:40px 20px;line-height:1.8;}
+  .legal-content h1{font-size:28px;margin-bottom:10px;}
+  .legal-content h2{font-size:20px;margin:25px 0 10px;color:#4f8cff;}
+  .legal-content p, .legal-content li{color:#d1d5db;font-size:14px;margin-bottom:8px;}
+  .legal-content .updated{color:#9ca3af;font-size:13px;margin-bottom:25px;}
+  .back-link{display:inline-block;margin-bottom:20px;color:#4f8cff;text-decoration:none;font-size:14px;}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="logo">✨ FreeGenAI</div>
+<button class="login-btn">Login</button>
+</header>
+
+<div class="legal-content">
+  <a href="index.html" class="back-link">← Back to Home</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: July 2026</p>
+
+  <p>FreeGenAI ("we", "our", "us") respects your privacy. This Privacy Policy explains what information we collect when you use our free AI image generation tool and how we use it.</p>
+
+  <h2>Information We Collect</h2>
+  <p>FreeGenAI does not require account creation to use the core image generation features. We do not collect personal information such as your name, address, or phone number unless you voluntarily provide it (for example, if you choose to sign up for an account in the future).</p>
+  <p>We use your browser's local storage to track your daily usage limit. This information stays on your device and is not transmitted to our servers.</p>
+
+  <h2>Prompts and Generated Images</h2>
+  <p>Text prompts you enter are sent to our AI image generation provider (Pollinations.ai) to create images. We do not store your prompts or generated images on our own servers.</p>
+
+  <h2>Cookies and Advertising</h2>
+  <p>We may use cookies and similar technologies to improve site functionality and, where applicable, to display advertisements through Google AdSense. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalized advertising by visiting Google's Ads Settings.</p>
+
+  <h2>Third-Party Services</h2>
+  <p>We use Cloudflare (for hosting/infrastructure) and Pollinations.ai (for AI image generation). These services have their own privacy policies governing how they handle data.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>FreeGenAI is not directed at children under 13. We do not knowingly collect information from children under 13.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about this Privacy Policy, please reach out via our <a href="contact.html" style="color:#4f8cff;">Contact page</a>.</p>
+</div>
+
+<footer class="footer">
+<div>✨ FreeGenAI</div>
+<p>Create professional AI images with simple prompts.</p>
+<p>© 2026 FreeGenAI All Rights Reserved.</p>
+</footer>
+</body>
+</html>
