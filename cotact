@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ & Contact - FreeGenAI</title>
+<meta name="description" content="Frequently asked questions about FreeGenAI, the free AI image generator. Get in touch with our team.">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .legal-content{max-width:800px;margin:0 auto;padding:40px 20px;line-height:1.8;}
+  .legal-content h1{font-size:28px;margin-bottom:10px;}
+  .legal-content h2{font-size:18px;margin:22px 0 8px;color:#4f8cff;}
+  .legal-content p, .legal-content li{color:#d1d5db;font-size:14px;margin-bottom:8px;}
+  .back-link{display:inline-block;margin-bottom:20px;color:#4f8cff;text-decoration:none;font-size:14px;}
+  .contact-box{background:#111827;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;margin-top:20px;}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="logo">✨ FreeGenAI</div>
+<button class="login-btn">Login</button>
+</header>
+
+<div class="legal-content">
+  <a href="index.html" class="back-link">← Back to Home</a>
+  <h1>Frequently Asked Questions</h1>
+
+  <h2>Is FreeGenAI really free?</h2>
+  <p>Yes. You can generate images without signing up, up to your daily limit. No hidden charges.</p>
+
+  <h2>Do I need to create an account?</h2>
+  <p>No, you can start generating images immediately. Creating an account (coming soon) will increase your daily limit.</p>
+
+  <h2>Who owns the images I generate?</h2>
+  <p>You are free to use the images you generate for personal or commercial purposes. Please review our AI provider's usage policies for any additional restrictions.</p>
+
+  <h2>Is there a daily limit?</h2>
+  <p>Yes, to keep the service free and available for everyone, there's a daily generation limit. Signed-up users get a higher limit than guests.</p>
+
+  <h2>What is "Character Consistency"?</h2>
+  <p>It lets you generate a new image using a previous image as a visual reference, helping keep the same character or style across multiple generations.</p>
+
+  <h2>Can I use FreeGenAI for commercial projects?</h2>
+  <p>Generally yes, but we recommend reviewing generated content before commercial use, as AI-generated images can occasionally include unintended elements.</p>
+
+  <h1 style="margin-top:40px;">Contact Us</h1>
+  <div class="contact-box">
+    <p>Have a question, feature request, or found a bug? We'd love to hear from you.</p>
+    <p style="margin-top:10px;">📧 Email: <a href="mailto:YOUR_EMAIL_HERE" style="color:#4f8cff;">YOUR_EMAIL_HERE</a></p>
+  </div>
+</div>
+
+<footer class="footer">
+<div>✨ FreeGenAI</div>
+<p>Create professional AI images with simple prompts.</p>
+<p>© 2026 FreeGenAI All Rights Reserved.</p>
+</footer>
+</body>
+</html>
