@@ -77,7 +77,7 @@ function checkAndConsumeLimit(count) {
 // ================================
 // BUILD IMAGE URL
 // ================================
-function buildImageUrl(prompt, style, aspectRatio, resolution, referenceImageUrl) {
+function buildImageUrl(prompt, style, aspectRatio, resolution, referenceImageUrl, needsText) {
   const styleText = STYLE_KEYWORDS[style] || "";
   const fullPrompt = `${prompt}, ${styleText}`;
 
@@ -96,6 +96,10 @@ function buildImageUrl(prompt, style, aspectRatio, resolution, referenceImageUrl
 
   if (referenceImageUrl) {
     url += `&image=${encodeURIComponent(referenceImageUrl)}`;
+  }
+
+  if (needsText) {
+    url += `&needsText=true`;
   }
 
   return url;
@@ -253,12 +257,16 @@ if (singlePanel) {
       ? `${prompt}, ${activeCategoryKeywords}`
       : prompt;
 
+    const needsTextCheckbox = document.getElementById("needs-text-checkbox");
+    const needsText = needsTextCheckbox ? needsTextCheckbox.checked : false;
+
     const url = buildImageUrl(
       finalPrompt,
       singleStyleSelect.value,
       singleAspectSelect.value,
       singleResolutionSelect.value,
-      useReference ? lastGeneratedImageUrl : null
+      useReference ? lastGeneratedImageUrl : null,
+      needsText
     );
 
     const img = new Image();
@@ -410,7 +418,10 @@ if (bgRemoveBtn) {
       const { removeBackground } = await import(
         "https://esm.sh/@imgly/background-removal@1.5.5"
       );
-      const blob = await removeBackground(bgInput.files[0]);
+      const blob = await removeBackground(bgInput.files[0], {
+        model: "medium", // behtar quality (small se upgrade)
+        output: { quality: 0.9, format: "image/png" }
+      });
       bgResultUrl = URL.createObjectURL(blob);
       bgPreview.innerHTML = "";
       const img = new Image();
