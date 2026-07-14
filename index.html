@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1170920057446469"
-     crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FreeGenAI - Free AI Image Generator | No Signup Required</title>
 <meta name="description" content="Generate stunning AI images for free — thumbnails, posters, logos, product ads, and more. No signup required, unlimited creativity, instant results.">
@@ -140,6 +138,30 @@ Prompt 4
 </label>
 <textarea placeholder="Image 4 prompt..."></textarea>
 </div>
+<div class="prompt-box small">
+<label>
+Prompt 5
+</label>
+<textarea placeholder="Image 5 prompt..."></textarea>
+</div>
+<div class="prompt-box small">
+<label>
+Prompt 6
+</label>
+<textarea placeholder="Image 6 prompt..."></textarea>
+</div>
+<div class="prompt-box small">
+<label>
+Prompt 7
+</label>
+<textarea placeholder="Image 7 prompt..."></textarea>
+</div>
+<div class="prompt-box small">
+<label>
+Prompt 8
+</label>
+<textarea placeholder="Image 8 prompt..."></textarea>
+</div>
 </div>
 <div class="settings">
 <div>
@@ -189,21 +211,17 @@ Resolution
 </button>
 </div>
 <button class="generate">
-Generate 4 Images
+Generate 8 Images
 </button>
 <div class="multi-preview">
-<div>
-Image 1
-</div>
-<div>
-Image 2
-</div>
-<div>
-Image 3
-</div>
-<div>
-Image 4
-</div>
+<div><span class="preview-text">Image 1</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 2</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 3</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 4</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 5</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 6</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 7</span><button class="mini-download" style="display:none;">⬇</button></div>
+<div><span class="preview-text">Image 8</span><button class="mini-download" style="display:none;">⬇</button></div>
 </div>
 <button class="download">
 Download All
@@ -211,6 +229,51 @@ Download All
 </section>
 </div>
 </main>
+
+<!-- EXTRA TOOLS -->
+<section class="extra-tools">
+<h2 style="text-align:center;font-size:22px;margin:25px 0 15px;">Extra Tools</h2>
+<div class="workspace">
+
+<!-- BACKGROUND REMOVER -->
+<section class="single-panel">
+<h2>🖼️ Background Remover</h2>
+<div class="prompt-box">
+<label>Upload Image</label>
+<input type="file" id="bg-remove-input" accept="image/*" style="width:100%;padding:10px;background:#080c16;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:white;">
+</div>
+<button class="generate" id="bg-remove-btn">Remove Background</button>
+<div class="preview" id="bg-remove-preview">Result will appear here</div>
+<button class="download" id="bg-remove-download">Download</button>
+</section>
+
+<!-- AI AVATAR -->
+<section class="multi-panel">
+<h2>🧑 AI Avatar Generator</h2>
+<div class="prompt-box">
+<label>Upload Your Photo</label>
+<input type="file" id="avatar-input" accept="image/*" style="width:100%;padding:10px;background:#080c16;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:white;">
+</div>
+<div class="settings" style="grid-template-columns:1fr;">
+<div>
+<label>Avatar Style</label>
+<select id="avatar-style">
+<option>Cartoon</option>
+<option>Anime</option>
+<option>Pixar 3D</option>
+<option>Professional Headshot</option>
+<option>Fantasy Character</option>
+</select>
+</div>
+</div>
+<button class="generate" id="avatar-btn">Generate Avatar</button>
+<div class="preview" id="avatar-preview">Result will appear here</div>
+<button class="download" id="avatar-download">Download</button>
+</section>
+
+</div>
+</section>
+
 <!-- UPCOMING FEATURES -->
 <section class="upcoming">
 <h2>
