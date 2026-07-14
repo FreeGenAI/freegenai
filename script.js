@@ -309,7 +309,11 @@ if (multiPanel) {
   // Ek image load karne ka helper (Promise-based, taake sequentially await kar saken)
   function loadOneImage(prompt, index) {
     return new Promise((resolve) => {
-      multiPreviewDivs[index].innerHTML = "Generating...";
+      const container = multiPreviewDivs[index];
+      const textSpan = container.querySelector(".preview-text");
+      const miniBtn = container.querySelector(".mini-download");
+      if (textSpan) textSpan.textContent = "Generating...";
+      if (miniBtn) miniBtn.style.display = "none";
 
       const url = buildImageUrl(
         prompt,
@@ -327,13 +331,23 @@ if (multiPanel) {
         img.onload = null; // recursion se bachne ke liye
         const watermarkedSrc = await addWatermark(img);
         img.src = watermarkedSrc;
-        multiPreviewDivs[index].innerHTML = "";
-        multiPreviewDivs[index].appendChild(img);
+
+        // Purani img (agar ho) hata kar nayi daalein, button ko preserve karein
+        const oldImg = container.querySelector("img");
+        if (oldImg) oldImg.remove();
+        if (textSpan) textSpan.remove();
+        container.insertBefore(img, container.firstChild);
+
+        if (miniBtn) {
+          miniBtn.style.display = "flex";
+          miniBtn.onclick = () => downloadImage(img.src, `freegenai-image-${index + 1}.jpg`);
+        }
+
         incrementGlobalCounterDisplay(1);
         resolve(true);
       };
       img.onerror = () => {
-        multiPreviewDivs[index].innerHTML = "Fail. Dobara try karein.";
+        if (textSpan) textSpan.textContent = "Fail. Dobara try karein.";
         resolve(false);
       };
       img.src = url;
@@ -373,5 +387,125 @@ if (multiPanel) {
       return;
     }
     imgs.forEach((img, i) => downloadImage(img.src, `freegenai-image-${i + 1}.jpg`));
+  });
+}
+
+// ================================
+// BACKGROUND REMOVER (100% client-side, free, unlimited)
+// ================================
+const bgRemoveBtn = document.getElementById("bg-remove-btn");
+if (bgRemoveBtn) {
+  const bgInput = document.getElementById("bg-remove-input");
+  const bgPreview = document.getElementById("bg-remove-preview");
+  const bgDownloadBtn = document.getElementById("bg-remove-download");
+  let bgResultUrl = null;
+
+  bgRemoveBtn.addEventListener("click", async () => {
+    if (!bgInput.files || !bgInput.files[0]) {
+      alert("Pehle ek image upload karein.");
+      return;
+    }
+    bgPreview.innerHTML = "Processing... (pehli baar thora time lag sakta hai)";
+    try {
+      const { removeBackground } = await import(
+        "https://esm.sh/@imgly/background-removal@1.5.5"
+      );
+      const blob = await removeBackground(bgInput.files[0]);
+      bgResultUrl = URL.createObjectURL(blob);
+      bgPreview.innerHTML = "";
+      const img = new Image();
+      img.style.maxWidth = "100%";
+      img.src = bgResultUrl;
+      bgPreview.appendChild(img);
+    } catch (err) {
+      bgPreview.innerHTML = "Background remove nahi ho saka. Dobara try karein.";
+    }
+  });
+
+  bgDownloadBtn.addEventListener("click", () => {
+    if (!bgResultUrl) {
+      alert("Pehle background remove karein.");
+      return;
+    }
+    const link = document.createElement("a");
+    link.href = bgResultUrl;
+    link.download = "freegenai-no-background.png";
+    link.click();
+  });
+}
+
+// ================================
+// AI AVATAR GENERATOR
+// ================================
+const avatarBtn = document.getElementById("avatar-btn");
+if (avatarBtn) {
+  const avatarInput = document.getElementById("avatar-input");
+  const avatarStyleSelect = document.getElementById("avatar-style");
+  const avatarPreview = document.getElementById("avatar-preview");
+  const avatarDownloadBtn = document.getElementById("avatar-download");
+
+  const AVATAR_STYLE_PROMPTS = {
+    "Cartoon": "turn this photo into a fun cartoon avatar, clean lines, vibrant colors",
+    "Anime": "turn this photo into an anime style avatar portrait",
+    "Pixar 3D": "turn this photo into a Pixar-style 3D animated character avatar",
+    "Professional Headshot": "turn this into a polished professional headshot avatar, studio lighting",
+    "Fantasy Character": "turn this photo into a fantasy character avatar, magical style"
+  };
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  avatarBtn.addEventListener("click", async () => {
+    if (!avatarInput.files || !avatarInput.files[0]) {
+      alert("Pehle apni photo upload karein.");
+      return;
+    }
+    if (!checkAndConsumeLimit(1)) return;
+
+    avatarPreview.innerHTML = "Generating avatar...";
+
+    try {
+      const file = avatarInput.files[0];
+      const base64 = await fileToBase64(file);
+      const prompt = AVATAR_STYLE_PROMPTS[avatarStyleSelect.value];
+
+      const response = await fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: prompt,
+          imageBase64: base64,
+          mimeType: file.type || "image/jpeg"
+        })
+      });
+
+      if (!response.ok) throw new Error("Avatar generation failed");
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      avatarPreview.innerHTML = "";
+      const img = new Image();
+      img.style.maxWidth = "100%";
+      img.src = objectUrl;
+      avatarPreview.appendChild(img);
+
+      avatarDownloadBtn.onclick = () => {
+        const link = document.createElement("a");
+        link.href = objectUrl;
+        link.download = "freegenai-avatar.png";
+        link.click();
+      };
+
+      incrementGlobalCounterDisplay(1);
+    } catch (err) {
+      avatarPreview.innerHTML = "Avatar generate nahi ho saka. Dobara try karein.";
+    }
   });
 }
